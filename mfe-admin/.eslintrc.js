@@ -15,6 +15,8 @@ module.exports = {
     'comma-dangle': 'off',
     'no-undef': 'off',
     'camelcase': 'off',
+    'arrow-body-style': 'off',
+    'key-spacing': 'off',
     'object-curly-spacing': 'off',
     'no-trailing-spaces': 'off',
     'import/no-unresolved': 'off',
