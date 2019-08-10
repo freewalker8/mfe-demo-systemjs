@@ -30,7 +30,6 @@
 
 <script>
 // @ is an alias to /src
-import Router from 'vue-router';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -43,7 +42,7 @@ export default {
     ...mapGetters(['users'])
   },
   methods: {
-    addUser: function () {
+    addUser() {
       console.log(this.getUser)
       this.$router.push('/user-add')
     }
