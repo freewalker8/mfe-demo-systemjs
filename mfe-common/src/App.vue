@@ -3,7 +3,7 @@
     <div id="nav">
       <router-link to="/mfe_log">日志管理</router-link> |
       <router-link to="/mfe_admin">系统管理</router-link> | 
-      <router-link to="/mfe_user">用户管理</router-link>
+      <!-- <router-link to="/mfe_user">用户管理</router-link> -->
     </div>
     <router-view/>
   </div>

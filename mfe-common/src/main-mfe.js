@@ -15,5 +15,8 @@ const vueLifecycles = singleSpaVue({
 });
 
 export const bootstrap = vueLifecycles.bootstrap;
-export const mount = vueLifecycles.mount;
+export function mount(props) {
+  console.log(props.authToken); // do something with the common authToken
+  return vueLifecycles.mount(props);
+}
 export const unmount = vueLifecycles.unmount;

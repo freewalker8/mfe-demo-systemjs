@@ -72,27 +72,24 @@
           singleSpa.registerApplication(
             'mfe_common',
             () => System.import('mfe_common'),
-            location => true
+            location => true,
+            { authToken: "d83jD63UdZ6RS6f70D0" }
           );
 
           singleSpa.registerApplication(
             'mfe_log',
             () => System.import('mfe_log'),
-            location => location.pathname.startsWith('/mfe_log')
+            location => location.pathname.startsWith('/mfe_log'),
+            { authToken: "d83jD63UdZ6RS6f70D0" }
           )
 
           singleSpa.registerApplication(
             'mfe_admin',
             () => System.import('mfe_admin'),
-            location => location.pathname.startsWith('/mfe_admin')
+            location => location.pathname.startsWith('/mfe_admin'),
+            { authToken: "d83jD63UdZ6RS6f70D0" }
           )
-
-          // singleSpa.registerApplication(
-          //   'mfe_user',
-          //   () => System.import('mfe_user'),
-          //   location => location.pathname.startsWith('/mfe_user')
-          // )
-
+          
           singleSpa.start();
         })
       })()

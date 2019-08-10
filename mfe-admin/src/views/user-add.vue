@@ -39,8 +39,12 @@ export default {
       email: '',
     }
   },
+  mounted(){
+    console.log(bus)
+  },
   methods: {
     addUser() {
+      event.preventDefault();
       if (!this.username || !this.email) {
         Message.warning({message: '用户名和邮箱都不能为空'});
         return;
@@ -52,6 +56,8 @@ export default {
       };
       this.$store.commit('addUser', params);
       Message.success({message: '添加成功'});
+
+      bus.$emit('addUser', {name: 'stone'});
     }
   }
 }
