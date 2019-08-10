@@ -42,7 +42,6 @@ export default {
   },
   methods: {
     addUser() {
-      console.log(this.getUser)
       this.$router.push('/user-add');
       bus.$emit('userMgtTabChange', 'userAdd');
     },

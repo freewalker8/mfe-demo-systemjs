@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <el-tabs v-model="activeName">
+    <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane name="logAccess">
         <span slot="label">          
-          <router-link to="/log-access"><i class="el-icon-tickets"></i> 访问日志</router-link>
+         <i class="el-icon-tickets"></i> 访问日志
         </span>
       </el-tab-pane>
       <el-tab-pane name="logLogin">
         <span slot="label">          
-          <router-link to="/log-login"><i class="el-icon-tickets"></i> 登录日志</router-link>
+          <i class="el-icon-tickets"></i> 登录日志
         </span>
       </el-tab-pane>
     </el-tabs>   
@@ -34,20 +34,26 @@ export default {
   name: 'MfeLog',
   data() {
     return {
-      activeName: 'logAccess'
+      activeName: 'logAccess',
+      nameMap: {
+        '/log-access': 'logAccess',
+        '/log-login': 'logLogin',
+      }
     }
   },
   mounted() {
     this.linkToPage();
   },
   methods: {
+    handleClick({name}) {
+      this.$router.push({name});
+    },
     linkToPage() {
-      const name = this.$router.currentRoute.name;
-      if (name) {
-        this.activeName = name;
-        this.$router.push({name: this.activeName});
-      } else {
-        setTimeout(this.linkToPage, 100);
+      const fullPath = this.$router.currentRoute.fullPath;
+      if (fullPath === '/') {
+        const key = '/log-access';
+        this.activeName = this.nameMap[key];
+        this.$router.push(key);
       }
     }
   }

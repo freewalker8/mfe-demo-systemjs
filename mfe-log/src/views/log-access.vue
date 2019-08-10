@@ -34,9 +34,13 @@ export default {
   },
   mounted() {    
     const self = this;
+    bus.$off('addAccessLog'); // 先注销监听，避免多次监听
     bus.$on('addAccessLog', (p) => {
       p && self.addLog(p);
     })
+  },
+  destroyed() {
+    
   },
   methods: {
     addLog(p) {

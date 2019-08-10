@@ -38,27 +38,26 @@ export default {
   },
   mounted() {
   },
-  destory() {
-    bus.$off(addAccessLog);
-    bus.$off(userMgtTabChange);
-  },
   methods: {
     addUser(event) {
       event.preventDefault();
+
       if (!this.username || !this.email) {
         Message.warning({message: '用户名和邮箱都不能为空'});
         return;
       }
+
       const params = {
         username: this.username, 
         email: this.email, 
         latestLogin: new Date().getTime()
       };
+      
       this.$store.commit('addUser', params);
       Message.success({message: '添加成功'});
       this.clearForm()
 
-      bus.$emit('addAccessLog', {operator: 'stone_' + Math.random(), detail: '添加用户'});
+      bus.$emit('addAccessLog', {operator: `stone_${Math.ceil(Math.random() * 1000)}`, detail: '添加用户'});
     },
     backToMgt() {
       this.$router.push({name: 'userMgt'});

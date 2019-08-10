@@ -28,16 +28,13 @@ export default {
     return {
       tableData: [{
         date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
+        name: 'stoneliang',
+        address: '10.192.168.1'
       }]
     }
   },
   mounted() {
-    bus.$on('addUser', (p) => {      
-      console.log('listened addUser');
-      console.log(p);
-    })
+    
   }
 }
 </script>

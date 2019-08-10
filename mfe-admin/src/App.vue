@@ -19,7 +19,11 @@ export default {
   name: 'MfeAdmin',
   data() {
     return {
-      activeName: 'userMgt'
+      activeName: 'userMgt',
+      nameMap: {
+        '/user-mgt': 'userMgt',
+        '/user-add': 'userAdd'
+      }
     }
   },
   mounted() {
@@ -28,17 +32,19 @@ export default {
       this.activeName = tabName;
     })
   },
+  destroyed() {
+    bus.$off('userMgtTabChange');
+  },
   methods: {
     handleClick({name}) {
       this.$router.push({name});
     },
-    linkToPage() {
-      const name = this.$router.currentRoute.name;
-      if (name) {
-        this.activeName = name;
-        this.$router.push({name: this.activeName});
-      } else {
-        setTimeout(this.linkToPage, 100);
+    linkToPage() {      
+      const fullPath = this.$router.currentRoute.fullPath;
+      if (fullPath === '/') {
+        const key = '/user-mgt';
+        this.activeName = this.nameMap[key];
+        this.$router.push(key);
       }
     }
   }
