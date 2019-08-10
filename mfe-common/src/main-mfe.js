@@ -3,6 +3,9 @@ import singleSpaVue from 'single-spa-vue';
 
 import App from './App.vue';
 import router from './router';
+import './utils/bus'; // 全局事件处理
+import 'element-ui/lib/theme-chalk/index.css';
+
 
 Vue.config.productionTip = false;
 

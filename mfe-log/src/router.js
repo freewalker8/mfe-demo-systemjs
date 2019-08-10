@@ -19,5 +19,9 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "logLogin" */ './views/log-login.vue'),
     },
+    {
+      path: '/',
+      redirect: '/log-access'
+    }
   ],
 });

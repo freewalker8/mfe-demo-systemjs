@@ -38,6 +38,10 @@ export default {
   },
   mounted() {
   },
+  destory() {
+    bus.$off(addAccessLog);
+    bus.$off(userMgtTabChange);
+  },
   methods: {
     addUser(event) {
       event.preventDefault();
@@ -54,7 +58,7 @@ export default {
       Message.success({message: '添加成功'});
       this.clearForm()
 
-      bus.$emit('addUser', {name: 'stone'});
+      bus.$emit('addAccessLog', {operator: 'stone_' + Math.random(), detail: '添加用户'});
     },
     backToMgt() {
       this.$router.push({name: 'userMgt'});

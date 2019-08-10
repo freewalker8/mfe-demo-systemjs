@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --port 9001",    
+    "serve": "vue-cli-service serve --port 9001",
     "serve_mfe": "cross-env NODE_ENV=mfe vue-cli-service serve --port 9001",
     "build": "vue-cli-service build",
     "build_mfe": "cross-env NODE_ENV=mfe vue-cli-service build",
     "lint": "vue-cli-service lint",
-    
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "element-ui": "^2.11.1",
     "single-spa-vue": "^1.5.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
