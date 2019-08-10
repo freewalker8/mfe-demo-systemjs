@@ -1,6 +1,5 @@
 <template>
   <div class="about">
-    <h1>添加用户页面</h1>
     <form class="form-horizontal">
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">账户</label>
@@ -18,7 +17,8 @@
       </div>      
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" @click="addUser" class="btn btn-info">添加</button>
+          <button @click="addUser" class="btn btn-info">添加</button>
+          <button @click="backToMgt" class="btn btn-default ml20">返回</button>
         </div>
       </div>
     </form>
@@ -27,9 +27,6 @@
 
 <script>
 import { Message } from 'element-ui';
-import Vue from 'vue';
-
-Vue.use(Message);
 
 export default {
   name: 'UserAdd',
@@ -39,11 +36,10 @@ export default {
       email: '',
     }
   },
-  mounted(){
-    console.log(bus)
+  mounted() {
   },
   methods: {
-    addUser() {
+    addUser(event) {
       event.preventDefault();
       if (!this.username || !this.email) {
         Message.warning({message: '用户名和邮箱都不能为空'});
@@ -56,9 +52,22 @@ export default {
       };
       this.$store.commit('addUser', params);
       Message.success({message: '添加成功'});
+      this.clearForm()
 
       bus.$emit('addUser', {name: 'stone'});
+    },
+    backToMgt() {
+      this.$router.push({name: 'userMgt'});
+      bus.$emit('userMgtTabChange', 'userMgt');
+    },
+    clearForm() {
+      this.username = '';
+      this.email = '';
     }
   }
 }
 </script>
+
+<style lang="less" scoped>
+.ml20{margin-left: 20px;}
+</style>

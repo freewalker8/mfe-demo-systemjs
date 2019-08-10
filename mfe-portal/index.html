@@ -22,6 +22,7 @@
     <link rel="preload" href="./libs/single-spa.min.js" as="script" crossorigin="anonymous" />
     <link rel="preload" href="./libs/vue.2.6.10.js" as="script" crossorigin="anonymous" />
     <link rel="stylesheet" href="./libs/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/normalize.css" />
     <script src="./libs/import-map-overrides.js"></script>
     <script src="./libs/systemjs/system.min.js"></script>
     <script src="./libs/systemjs/extras/amd.min.js"></script>
@@ -29,14 +30,11 @@
     <script src="./libs/systemjs/extras/named-register.min.js"></script>
     <script src="./libs/systemjs/extras/use-default.min.js"></script>
   </head>
+  <style>
+  html,body{height: 100%; overflow: hidden;}
+  </style>
   <body>
-    <div>
-      <div id="single-spa-application:mfe_common"></div>
-      <div id="container">
-          <div id="single-spa-application:mfe_log"></div>
-          <div id="single-spa-application:mfe_admin"></div>
-      </div>
-    </div>
+    <div id="single-spa-application:mfe_common" style="height: 100%;"></div>      
     <script>
       (function() {
         // See https://github.com/systemjs/systemjs/issues/1939
@@ -89,7 +87,7 @@
             location => location.pathname.startsWith('/mfe_admin'),
             { authToken: "d83jD63UdZ6RS6f70D0" }
           )
-          
+
           singleSpa.start();
         })
       })()

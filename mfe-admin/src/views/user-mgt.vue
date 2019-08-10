@@ -1,12 +1,11 @@
 <template>
   <div class="home">
-    <h1>用户管理页面</h1>
-    <div>
+    <div class="op-button">
       <button @click="addUser()" type="button" class="btn btn-success">添加</button>
-      <button type="button" class="btn btn-danger">删除</button>
+      <button @click="deleteUser()" type="button" class="btn btn-danger">删除</button>
     </div>
     <div>
-      <table class="table">
+      <table class="table table-hover">
         <thead>
           <tr>
             <th class="col-sm-2">#</th>
@@ -44,19 +43,30 @@ export default {
   methods: {
     addUser() {
       console.log(this.getUser)
-      this.$router.push('/user-add')
+      this.$router.push('/user-add');
+      bus.$emit('userMgtTabChange', 'userAdd');
+    },
+    deleteUser() {
+      this.users.pop()
     }
   }
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .table{
   th{
     text-align:left;
   }
   td{
     text-align: left;
+  }
+}
+.op-button{
+  text-align: left;
+  button {
+    float: left;
+    margin-right: 20px;
   }
 }
 </style>
