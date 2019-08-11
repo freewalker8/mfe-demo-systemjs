@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue Microfrontends</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="importmap-type" content="systemjs-importmap">
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "mfe_common": "http://localhost:9000/app.js",
+          "mfe_log": "http://localhost:9001/app.js",
+          "mfe_admin": "http://localhost:9002/app.js",
+          "mfe_user": "http://localhost:9003/app.js",
+          "single-spa": "./libs/single-spa.min.js",
+          "vue": "./libs/vue.2.6.10.js",
+          "vue-router": "./libs/vue-router.min.js"
+        }
+      }
+    </script>
+    <link rel="preload" href="./libs/single-spa.min.js" as="script" crossorigin="anonymous" />
+    <link rel="preload" href="./libs/vue.2.6.10.js" as="script" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./libs/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/normalize.css" />
+    <script src="./libs/import-map-overrides.js"></script>
+    <script src="./libs/systemjs/system.min.js"></script>
+    <script src="./libs/systemjs/extras/amd.min.js"></script>
+    <script src="./libs/systemjs/extras/named-exports.js"></script>
+    <script src="./libs/systemjs/extras/named-register.min.js"></script>
+    <script src="./libs/systemjs/extras/use-default.min.js"></script>
+  </head>
+  <style>
+  html,body{height: 100%; overflow: hidden;}
+  </style>
+  <body>
+    <div id="single-spa-application:mfe_common" style="height: 100%;"></div>      
+    <script>
+      (function() {
+        // See https://github.com/systemjs/systemjs/issues/1939
+        var originalResolve = System.resolve
+        var moduleMap = {}
+        System.resolve = function(name) {
+          return originalResolve.apply(this, arguments).then(resolved => {
+            moduleMap[name] = resolved;
+            return resolved;
+          });
+        }
+        window.getPublicPath = function(name) {
+          const url = moduleMap[name]
+          if (url) {
+            let index = url.lastIndexOf('/js')
+            if (index < 0) {
+              index = url.lastIndexOf('/')
+            }
+            index++
+            return url.slice(0, index);
+          } else {
+            throw Error(`Could not find url for module '${name}'`)
+          }
+        }
+
+        Promise.all([System.import('single-spa'), System.import('vue'), System.import('vue-router')]).then(function (modules) {
+          var singleSpa = modules[0];
+          var Vue = modules[1];
+          var VueRouter = modules[2];
+
+          Vue.use(VueRouter)
+
+          singleSpa.registerApplication(
+            'mfe_common',
+            () => System.import('mfe_common'),
+            location => true,
+            { authToken: "d83jD63UdZ6RS6f70D0" }
+          );
+
+          singleSpa.registerApplication(
+            'mfe_log',
+            () => System.import('mfe_log'),
+            location => location.pathname.startsWith('/mfe_log'),
+            { authToken: "d83jD63UdZ6RS6f70D0" }
+          )
+
+          singleSpa.registerApplication(
+            'mfe_admin',
+            () => System.import('mfe_admin'),
+            location => location.pathname.startsWith('/mfe_admin'),
+            { authToken: "d83jD63UdZ6RS6f70D0" }
+          )
+
+          singleSpa.start();
+        })
+      })()
+    </script>
+    <!-- See https://github.com/joeldenning/import-map-overrides#user-interface  -->
+    <import-map-overrides-full show-when-local-storage="overrides-ui"></import-map-overrides-full>
+  </body>
+</html>
