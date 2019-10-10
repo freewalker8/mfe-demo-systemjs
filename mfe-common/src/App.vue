@@ -15,12 +15,14 @@
         <ul>
           <li><router-link to="/mfe_log"><i class=""></i>日志管理</router-link></li>
           <li><router-link to="/mfe_admin"><i class=""></i>系统管理</router-link></li>
+          <li><router-link to="/mfe_react"><i class=""></i>React</router-link></li>
         </ul>
       </div>
       <div id="wst-common-container">
         <router-view/>
         <div id="single-spa-application:mfe_log"></div>
         <div id="single-spa-application:mfe_admin"></div>
+        <div id="react-app"></div>
       </div>
     </div>
   </div>
@@ -38,7 +40,7 @@ export default {
   },
   mounted() {
     // subject test
-    setTimeout(function() {
+    setTimeout(() => {
       subjectBus.next({type: 'testFromCommon', detail: 'i am a test message.'});
     }, 2000);
   },
