@@ -7,6 +7,7 @@ import store from './store';
 
 import './set-public-path';
 
+
 Vue.config.productionTip = false;
 
 const vueLifecycles = singleSpaVue({

@@ -38,11 +38,17 @@ export default {
       nameMap: {
         '/log-access': 'logAccess',
         '/log-login': 'logLogin',
-      }
+      },
+      subscription: null
     }
   },
   mounted() {
     this.linkToPage();
+    this.subscription = subjectBus.addSubscribe('log_sub', (v) => {
+      console.log('log subscribe', v);
+    });
+  },
+  destroyed() {
   },
   methods: {
     handleClick({name}) {

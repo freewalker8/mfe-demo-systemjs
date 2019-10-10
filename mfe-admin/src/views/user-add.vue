@@ -58,6 +58,7 @@ export default {
       this.clearForm()
 
       bus.$emit('addAccessLog', {operator: `stone_${Math.ceil(Math.random() * 1000)}`, detail: '添加用户'});
+      subjectBus.next({type: 'addAccessLog', operator: `stone_${Math.ceil(Math.random() * 1000)}`, detail: '添加用户'});
     },
     backToMgt() {
       this.$router.push({name: 'userMgt'});

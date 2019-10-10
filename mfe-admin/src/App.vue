@@ -23,14 +23,19 @@ export default {
       nameMap: {
         '/user-mgt': 'userMgt',
         '/user-add': 'userAdd'
-      }
+      },
+      subscription: null
     }
   },
   mounted() {
     this.linkToPage();
     bus.$on('userMgtTabChange', (tabName) => {
       this.activeName = tabName;
-    })
+    });
+
+    this.subscription = subjectBus.addSubscribe('admin_sub',(v) => {
+      console.log('admin subscribe', v);
+    });
   },
   destroyed() {
     bus.$off('userMgtTabChange');

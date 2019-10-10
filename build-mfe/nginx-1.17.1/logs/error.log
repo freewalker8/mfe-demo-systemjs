@@ -1,0 +1,4 @@
+2019/10/08 18:20:16 [emerg] 7076#8020: CreateDirectory() "C:\Users\Administrator\Desktop\stoneliang\mfe-demo-systemjs\build-mfe\nginx-1.17.1/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2019/10/08 18:22:22 [notice] 4644#3608: signal process started
+2019/10/08 18:22:22 [error] 4644#3608: invalid PID number "" in "C:\Users\Administrator\Desktop\stoneliang\mfe-demo-systemjs\build-mfe\nginx-1.17.1/logs/nginx.pid"
+2019/10/08 18:22:32 [emerg] 8684#8324: CreateDirectory() "C:\Users\Administrator\Desktop\stoneliang\mfe-demo-systemjs\build-mfe\nginx-1.17.1/temp/client_body_temp" failed (3: The system cannot find the path specified)

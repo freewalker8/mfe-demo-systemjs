@@ -8,10 +8,9 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.config.productionTip = false;
 
-if (process.env.NODE_ENV !== 'mfe') {
-  new Vue({
-    router,
-    store,
-    render: h => h(App),
-  }).$mount('#app');
-}
+new Vue({
+  router,
+  store,
+  render: h => h(App),
+}).$mount('#app');
+

@@ -37,7 +37,10 @@ export default {
 
   },
   mounted() {
-
+    // subject test
+    setTimeout(function() {
+      subjectBus.next({type: 'testFromCommon', detail: 'i am a test message.'});
+    }, 2000);
   },
   methods: {
 
