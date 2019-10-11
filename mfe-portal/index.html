@@ -13,7 +13,7 @@
           "mfe_log": "http://localhost:9001/app.js",
           "mfe_admin": "http://localhost:9002/app.js",
           "mfe_user": "http://localhost:9003/app.js",
-          "mfe_react": "http://localhost:3003/static/js/main.js",
+          "mfe_react": "http://localhost:3000/static/js/bundle.js",
           "single-spa": "./libs/single-spa.min.js",
           "vue": "./libs/vue.2.6.10.js",
           "vue-router": "./libs/vue-router.min.js"
@@ -50,7 +50,7 @@
       };
 
       const loadReactApp = async () => {
-          await runScript('http://localhost:3003/static/js/main.js');
+          await runScript("http://localhost:3000/static/js/bundle.js");
           return window.reactApp;
       };
 
@@ -108,7 +108,8 @@
 
           singleSpa.registerApplication(
             'mfe_react',
-            () => System.import('mfe_react'),
+            // () => System.import('mfe_react'),
+            loadReactApp,
             location => location.pathname.startsWith('/mfe_react'),
             { authToken: "d83jD63UdZ6RS6f70D0" }
           );

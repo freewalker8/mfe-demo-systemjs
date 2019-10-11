@@ -79,7 +79,10 @@ choosePort(HOST, DEFAULT_PORT)
       proxyConfig,
       urls.lanUrlForConfig
     );
-    const devServer = new WebpackDevServer(compiler, serverConfig);
+    const devServer = new WebpackDevServer(compiler, {...serverConfig, headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+    }});
     // Launch WebpackDevServer.
     devServer.listen(port, HOST, err => {
       if (err) {
