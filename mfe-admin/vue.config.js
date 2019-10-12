@@ -1,12 +1,12 @@
 const ENV = process.env.NODE_ENV;
-const entry = ENV !== 'mfe' ? './src/main.js' : './src/main-mfe.js';
+const entry = './src/main.js';
 module.exports = {
   chainWebpack: (config) => {
     console.log('env:', ENV);
     console.log('entry:', entry);
 
     config.entry('app')
-      .add('./src/main.js')
+      .add(entry)
       .end();
 
     config.devServer.set('inline', false);
