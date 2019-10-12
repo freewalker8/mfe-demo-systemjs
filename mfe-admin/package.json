@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --port 9002",
-    "build": "vue-cli-service build",
+    "serve": "npm run setEntry && vue-cli-service serve --port 9002",
+    "build": "npm run setEntry && vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "build_mfe": "cross-env NODE_ENV=mfe vue-cli-service build",
-    "serve_mfe": "cross-env NODE_ENV=mfe vue-cli-service serve --port 9002",
+    "build_mfe": "cross-env NODE_ENV=mfe && npm run setEntry && vue-cli-service build",
+    "serve_mfe": "cross-env NODE_ENV=mfe && npm run setEntry && vue-cli-service serve --port 9002",
+    "setEntry": "node ./entry/setEntry.js",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
@@ -35,6 +36,7 @@
     "less-loader": "^4.1.0",
     "vue-cli-plugin-single-spa": "^1.0.0",
     "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.41.0"
   }
 }

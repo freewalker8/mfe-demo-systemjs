@@ -6,7 +6,7 @@ module.exports = {
     console.log('entry:', entry);
 
     config.entry('app')
-      .add(entry)
+      .add('./src/main.js')
       .end();
 
     config.devServer.set('inline', false);

@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import singleSpaVue from 'single-spa-vue';
 
+import './set-public-path';
+
 import App from './App.vue';
 import router from './router';
 import './utils/bus'; // 全局事件处理

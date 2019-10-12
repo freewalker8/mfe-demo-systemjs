@@ -33,7 +33,7 @@ export default {
       this.activeName = tabName;
     });
 
-    this.subscription = subjectBus.addSubscribe('admin_sub',(v) => {
+    this.subscription = subjectBus.addSubscribe('admin_sub', (v) => {
       console.log('admin subscribe', v);
     });
   },

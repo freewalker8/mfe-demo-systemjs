@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --port 9000",
-    "serve_mfe": "cross-env NODE_ENV=mfe vue-cli-service serve --port 9000",
-    "build": "vue-cli-service build",
-    "build_mfe": "cross-env NODE_ENV=mfe vue-cli-service build",
+    "serve": "npm run setEntry && vue-cli-service serve --port 9000",
+    "serve_mfe": "cross-env NODE_ENV=mfe && npm run setEntry && vue-cli-service serve --port 9000",
+    "build": "npm run setEntry && vue-cli-service build",
+    "build_mfe": "cross-env NODE_ENV=mfe && npm run setEntry && vue-cli-service build",
+    "setEntry": "node ./entry/setEntry.js",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
