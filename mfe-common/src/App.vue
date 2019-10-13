@@ -22,7 +22,7 @@
         <router-view/>
         <div id="single-spa-application:mfe_log"></div>
         <div id="single-spa-application:mfe_admin"></div>
-        <div id="react-app"></div>
+        <div id="single-spa-application:mfe_react"></div>
       </div>
     </div>
   </div>
