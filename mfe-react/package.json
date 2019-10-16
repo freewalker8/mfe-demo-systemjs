@@ -48,8 +48,8 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "serve": "node scripts/http-server.js build 3003",
-    "build": "node scripts/build.js",
+    "serve": "npm run build && node scripts/http-server.js build 3003",
+    "build": "rimraf -rf build && node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
@@ -95,6 +95,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "rimraf": "^3.0.0"
   }
 }

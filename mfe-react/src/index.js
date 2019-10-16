@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import singleSpaReact, {SingleSpaContext}  from 'single-spa-react';
+import singleSpaReact from 'single-spa-react';
 import rootComponent from './App';
-debugger
+
 const reactLifecycles = singleSpaReact({
     React,
     ReactDOM,
     rootComponent,
     domElementGetter: () => {
-        debugger
         return document.getElementById('single-spa-application:mfe_react')
     }
 });

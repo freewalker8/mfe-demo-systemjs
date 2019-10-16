@@ -8,14 +8,17 @@ class App extends Component {
     super(props);     
     this.state = { 
       error: false,
-      subscription: null
+      subscription: null,
+      logs: ['<li>订阅事件：</li>']
     };
   }
   componentDidMount() {
-    debugger
-    console.log('root component mounted')
     let subscription = window.subjectBus.addSubscribe('react_sub',(v) => {
       console.log('react subscribe', v);
+      const logs = Array.from(this.state.logs);
+      logs.push(`<li>事件：${v.type}，责任人：${v.operator}，日志信息：${v.detail}<li>`);
+      this.setState({logs: logs});
+      console.log('logs', logs);
     });
     this.setState({subscription: subscription});
   }
@@ -29,6 +32,7 @@ class App extends Component {
     return (
       <div className="App">
         <Clock/>
+        <ul dangerouslySetInnerHTML={{__html: this.state.logs}}></ul>
       </div>
     );
   }
